@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
 
 from markdownReader import read_markdown, read_markdown_list
+from timer import startMarkdownSync
 
 app = FastAPI()
 
@@ -48,6 +49,11 @@ async def root():
     return {"message": "Hello World"}
 
 
+def init():
+    startMarkdownSync()
+
+
 if __name__ == '__main__':
+    init()
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=2022, debug=True)
